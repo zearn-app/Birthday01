@@ -1,295 +1,118 @@
-<!DOCTYPE html>    
-<html lang="en">    
-<head>    
-<meta charset="UTF-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">    
-<title>Happy Birthday 🎉</title>    
-    
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">    
-    
-<style>    
-* { margin: 0; padding: 0; box-sizing: border-box; }    
-    
-body {    
-  font-family: 'Poppins', sans-serif;    
-  overflow-x: hidden;    
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);    
-  background-size: 400% 400%;    
-  animation: gradientBG 15s ease infinite;    
-  color: #fff;    
-  text-align: center;    
-}    
-    
-@keyframes gradientBG {    
-  0% { background-position: 0% 50% }    
-  50% { background-position: 100% 50% }    
-  100% { background-position: 0% 50% }    
-}    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
 
-/* 🔥 INTRO SAME */
-#gift-intro {    
-  position: fixed;    
-  top: 0; left: 0; width: 100%; height: 100vh;    
-  background: radial-gradient(circle at center, #000000 20%, #111 80%);    
-  display: flex;    
-  align-items: center;    
-  justify-content: center;    
-  z-index: 9999;    
-  overflow: hidden;  
-}    
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
 
-.gift-glow {  
-  position:absolute;  
-  width:400px;  
-  height:400px;  
-  background: radial-gradient(circle, rgba(255,215,0,0.6), transparent 70%);  
-  animation: glowPulse 2s infinite alternate;  
-  filter: blur(40px);  
-}  
-
-@keyframes glowPulse {  
-  from { transform: scale(0.9); opacity:0.6;}  
-  to { transform: scale(1.2); opacity:1;}  
-}  
-
-.intro-sparkle {  
-  position:absolute;  
-  font-size:18px;  
-  animation: sparkleFloat 4s linear infinite;  
-}  
-
-@keyframes sparkleFloat {  
-  0% { transform: translateY(0) scale(0); opacity:0;}  
-  50% { opacity:1;}  
-  100% { transform: translateY(-200px) scale(1.5); opacity:0;}  
-}  
-
-.light-rays {  
-  position:absolute;  
-  width:100%;  
-  height:100%;  
-  background: repeating-conic-gradient(  
-    from 0deg,  
-    rgba(255,255,255,0.05) 0deg 10deg,  
-    transparent 10deg 20deg  
-  );  
-  animation: rotateRays 20s linear infinite;  
-  opacity:0.3;  
-}  
-
-@keyframes rotateRays {  
-  from { transform: rotate(0deg);}  
-  to { transform: rotate(360deg);}  
-}  
-
-.gift-box {    
-  position: relative;    
-  width: 280px;    
-  height: 280px;    
-  cursor: pointer;    
-  animation: giftPulse 2s infinite alternate;    
-  transform-style: preserve-3d;  
-  transition: transform 0.4s;  
-}    
-
-.gift-box:hover {  
-  transform: rotateY(10deg) scale(1.05);  
-}  
-
-.gift-box .lid {    
-  position: absolute;    
-  top: -30px;    
-  left: 50%;    
-  transform: translateX(-50%);    
-  width: 100%;    
-  height: 80px;    
-  background: #ff4d6d;    
-  border-radius: 15px 15px 0 0;    
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);    
-  z-index: 2;    
-}    
-
-.gift-box .box {    
-  position: absolute;    
-  top: 50px;    
-  width: 100%;    
-  height: 180px;    
-  background: #ff6b81;    
-  border-radius: 15px;    
-  display: flex;    
-  align-items: center;    
-  justify-content: center;    
-  font-size: 80px;    
-}    
-
-.gift-box .ribbon {    
-  position: absolute;    
-  top: 40px;    
-  left: 50%;    
-  transform: translateX(-50%);    
-  width: 40px;    
-  height: 180px;    
-  background: gold;    
-}    
-
-.gift-box .bow {    
-  position: absolute;    
-  top: -15px;    
-  left: 50%;    
-  transform: translateX(-50%);    
-  font-size: 70px;    
-  animation: bowShake 1.5s infinite;    
-}    
-
-@keyframes giftPulse {    
-  from { transform: scale(0.95); }    
-  to { transform: scale(1.05); }    
-}    
-
-@keyframes bowShake {    
-  0%,100% { transform: translateX(-50%) rotate(-8deg);}  
-  50% { transform: translateX(-50%) rotate(8deg);}  
-}  
-
-/* 🌟 NAME REVEAL */
-.name-reveal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  font-size: 3.5em;
-  font-family: 'Pacifico';
-  background: linear-gradient(90deg, #ffd700, #fff, #ff6b81);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(255,255,255,0.8),
-               0 0 40px rgba(255,215,0,0.8);
-  opacity: 0;
-  z-index: 9998;
-  animation: namePop 2s ease forwards;
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@keyframes namePop {
-  0% { opacity:0; transform:translate(-50%,-50%) scale(0.3);}
-  60% { opacity:1; transform:translate(-50%,-50%) scale(1.2);}
-  100% { transform:translate(-50%,-50%) scale(1);}
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
 }
 
-/* HERO */
-.hero h1 { font-family:'Pacifico'; font-size:4.5em;}
-.hero p { font-size:1.4em;}
-.hero button { padding:15px 40px; border-radius:50px; background:gold;}
+/* Animated background */
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
 
-.hidden { display:none;}
-</style>    
-</head>    
+.container {
+  animation: fadeIn 2s ease;
+}
 
-<body>    
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
 
-<audio id="music" loop>    
-<source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3">    
-</audio>    
+p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
 
-<div id="gift-intro">    
-  <div class="light-rays"></div>  
-  <div class="gift-glow"></div>  
-  <div class="gift-box" onclick="openGift()">    
-    <div class="bow">🎀</div>    
-    <div class="ribbon"></div>    
-    <div class="lid" id="lid"></div>    
-    <div class="box">🎁</div>    
-  </div>    
-</div>    
+/* Button */
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4e88;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-<!-- 💖 NAME REVEAL -->
-<div id="nameReveal" class="name-reveal hidden">
-  Happy Birthday, <span id="friendName">Your Friend 💖</span>
+button:hover {
+  transform: scale(1.1);
+  background: #ff4e88;
+  color: white;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Floating balloons */
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 60px;
+  animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(0);}
+  100% {transform: translateY(-120vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Balloons -->
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="left:10%; animation-delay:0s;">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="left:30%; animation-delay:2s;">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="left:70%; animation-delay:4s;">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="left:85%; animation-delay:1s;">
+
+<div class="container">
+  <h1>🎉 Happy Birthday 🎂</h1>
+  <p>A special surprise is waiting for you...</p>
+  <button onclick="enterSite()">Enter 🎁</button>
 </div>
 
-<section class="hero">    
-<h1>Happy Birthday Dear Friend! 🎉</h1>    
-<p>You make every day brighter 💖</p>    
-<button onclick="startCelebration()">Open Your Celebration 🎂</button>    
-</section>    
-
-<section id="surprise" class="hidden">    
-<h2>🎆 SURPRISE!!! 🎆</h2>    
-</section>    
-
-<canvas id="confetti-canvas"></canvas>    
-
-<script>    
-
-/* ✨ SPARKLES */
-setInterval(()=>{
-  let s=document.createElement("div");
-  s.className="intro-sparkle";
-  s.innerHTML="✨";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top="70%";
-  document.getElementById("gift-intro").appendChild(s);
-  setTimeout(()=>s.remove(),4000);
-},300);
-
-/* 🎁 OPEN */
-function openGift() {    
-  const intro = document.getElementById('gift-intro');    
-  const lid = document.getElementById('lid');    
-
-  lid.style.transform = 'translateX(-50%) rotateX(-120deg) translateY(-80px)';    
-
-  burstEffect();
-
-  setTimeout(() => {    
-    intro.style.opacity = '0';    
-    setTimeout(() => {    
-      intro.style.display = 'none';    
-      showName();   // 👈 NEW
-      startCelebration();    
-    }, 1200);    
-  }, 600);    
-}    
-
-/* 💖 SHOW NAME */
-function showName(){
-  const name = document.getElementById("nameReveal");
-  name.classList.remove("hidden");
-
-  setTimeout(()=>{
-    name.style.transition="opacity 1s";
-    name.style.opacity="0";
-  },3000);
+<script>
+function enterSite() {
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "main.html"; // next page
+  }, 800);
 }
+</script>
 
-/* 💥 BURST */
-function burstEffect(){
-  for(let i=0;i<40;i++){
-    let b=document.createElement("div");
-    b.innerHTML="✨";
-    b.style.position="absolute";
-    b.style.left="50%";
-    b.style.top="50%";
-    document.getElementById("gift-intro").appendChild(b);
-
-    let x=(Math.random()-0.5)*500;
-    let y=(Math.random()-0.5)*500;
-
-    b.animate([
-      {transform:"translate(-50%,-50%)", opacity:1},
-      {transform:`translate(${x}px,${y}px)`, opacity:0}
-    ],{duration:1000});
-
-    setTimeout(()=>b.remove(),1000);
-  }
-}
-
-/* START */
-function startCelebration() {    
-  document.getElementById("surprise").classList.remove("hidden");    
-  document.getElementById("music").play();    
-}    
-
-</script>    
-
-</body>    
+</body>
 </html>
