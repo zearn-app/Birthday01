@@ -1,394 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy 18th Birthday 🎉</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  overflow-x: hidden;
-  background: #000;
-  color: white;
-}
-
-/* Intro */
-.intro {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: linear-gradient(45deg, #ff758c, #ff7eb3, #ff9a9e);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  transition: all 1s ease;
-}
-
-.intro.hide {
-  animation: fadeOut 1.2s ease forwards;
-}
-
-@keyframes fadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
-
-.intro h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 4.2em;
-  animation: glow 2s infinite alternate;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.intro p {
-  margin-top: 20px;
-  font-size: 1.4em;
-  opacity: 0.9;
-  animation: pulse 2s infinite;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 15px #fff, 0 0 30px #ff4da6, 0 0 50px #ff69b4; }
-  to { text-shadow: 0 0 25px #fff, 0 0 50px #ff4da6, 0 0 80px #ff69b4; }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* Floating hearts in intro */
-.heart-float {
-  position: absolute;
-  font-size: 2em;
-  animation: floatHeart linear infinite;
-  opacity: 0.7;
-}
-
-/* Main */
-.main {
-  display: none;
-  padding: 40px 20px;
-  text-align: center;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #ff9a9e);
-  background-size: 400% 400%;
-  min-height: 100vh;
-  animation: gradientShift 18s ease infinite;
-}
-
-.main.show {
-  display: block;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-h2 {
-  font-family: 'Pacifico', cursive;
-  font-size: 3.2em;
-  margin-bottom: 30px;
-  animation: glow 3s infinite alternate;
-}
-
-/* Gift */
-.gift-container {
-  margin: 40px auto;
-  width: 200px;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-
-.gift-container:hover {
-  transform: scale(1.08);
-}
-
-.gift.open .gift-lid {
-  transform: translateY(-75px) rotate(12deg);
-  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.gift.open .ribbon {
-  animation: ribbonShake 0.6s ease;
-}
-
-.gift svg {
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-}
-
-/* Note */
-.note {
-  display: none;
-  max-width: 620px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.22);
-  backdrop-filter: blur(12px);
-  padding: 35px;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  transition: all 0.6s ease;
-}
-
-.note.show {
-  display: block;
-  animation: notePop 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-@keyframes notePop {
-  0% { transform: scale(0.6) translateY(50px); opacity: 0; }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
-}
-
-.note p {
-  font-size: 1.15em;
-  line-height: 1.7;
-  white-space: pre-line;
-}
-
-/* Gallery */
-.gallery {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin: 50px auto;
-  flex-wrap: wrap;
-}
-
-.photo {
-  width: 160px;
-  height: 210px;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  transition: all 0.4s ease;
-}
-
-.photo:hover {
-  transform: scale(1.1) rotate(3deg);
-  box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
-}
-
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.photo:hover img {
-  transform: scale(1.15);
-}
-
-/* Celebration */
-.celebration {
-  margin: 40px 0;
-  font-size: 2.4em;
-  font-weight: 700;
-  animation: celebrationBounce 2s infinite;
-}
-
-@keyframes celebrationBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* Extra wishes */
-.extra-wishes {
-  max-width: 620px;
-  margin: 40px auto;
-  padding: 25px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 20px;
-  font-size: 1.1em;
-  line-height: 1.8;
-}
-
-/* Confetti */
-.confetti {
-  position: fixed;
-  top: -20px;
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  animation: fall 4.5s linear forwards;
-  z-index: 200;
-}
-
-@keyframes fall {
-  to { 
-    transform: translateY(110vh) rotate(720deg); 
-  }
-}
-
-/* Floating elements */
-.floating-heart {
-  position: absolute;
-  font-size: 28px;
-  z-index: 10;
-  animation: floatUp 8s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(100vh) rotate(0deg); }
-  100% { transform: translateY(-100px) rotate(360deg); }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Happy Birthday, Alex! 🎂</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .title-font {
+            font-family: 'Playfair Display', cursive;
+        }
+        
+        .candle {
+            animation: flame 1.5s infinite alternate;
+        }
+        
+        @keyframes flame {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(1.3); }
+        }
+        
+        .balloon {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        
+        .memory-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .memory-card:hover {
+            transform: scale(1.08) rotate(2deg);
+        }
+    </style>
 </head>
-
-<body>
-
-<div class="intro" id="intro">
-  <h1>Happy 18th Birthday 🎂</h1>
-  <p>Tap anywhere to begin your celebration...</p>
-</div>
-
-<div class="main" id="main">
-
-  <h2>💖 Happy 18th Birthday, Beautiful 💖</h2>
-
-  <div class="gift-container" id="giftBox">
-    <div class="gift" id="gift">
-      <svg width="200" height="180" viewBox="0 0 200 180">
-        <!-- Box -->
-        <rect x="35" y="90" width="130" height="80" fill="#ff4da6" rx="8"/>
-        <!-- Lid -->
-        <rect x="25" y="70" width="150" height="35" fill="#ff69b4" rx="8" class="gift-lid"/>
-        <!-- Ribbon -->
-        <rect x="90" y="70" width="20" height="100" fill="#fff" class="ribbon"/>
-        <circle cx="100" cy="105" r="18" fill="#ff1493" class="ribbon"/>
-      </svg>
-    </div>
-  </div>
-
-  <div class="note" id="note">
-    <p id="message"></p>
-  </div>
-
-  <div class="gallery">
-    <div class="photo"><img src="https://picsum.photos/300/380?random=1" alt="Memory 1"></div>
-    <div class="photo"><img src="https://picsum.photos/300/380?random=2" alt="Memory 2"></div>
-    <div class="photo"><img src="https://picsum.photos/300/380?random=3" alt="Memory 3"></div>
-  </div>
-
-  <div class="celebration">🎉 YOU ARE OFFICIALLY 18 NOW 🎉</div>
-
-  <div class="extra-wishes">
-    <p>Welcome to adulthood! May this year bring you endless adventures, unstoppable dreams, and all the happiness your heart can hold. Shine bright, the world is yours ✨</p>
-  </div>
-
-</div>
-
-<script>
-// Intro click
-const intro = document.getElementById('intro');
-const main = document.getElementById('main');
-
-intro.addEventListener('click', () => {
-  intro.classList.add('hide');
-  setTimeout(() => {
-    main.classList.add('show');
-    createFloatingHearts();
-    launchConfetti(30);
-  }, 900);
-});
-
-// Typing effect
-const text = `Today is not just your birthday...\n\nIt's the beginning of your most exciting chapter yet! 🎉\n\nAt 18, the world opens its doors for you. Chase your dreams fearlessly, love deeply, laugh loudly, and create memories that will last forever.\n\nYou are strong, beautiful, and full of light. May this year be filled with magic, success, and endless joy 💖\n\nHappy 18th Birthday!`;
-let i = 0;
-
-function typeText() {
-  const msg = document.getElementById("message");
-  if (i < text.length) {
-    msg.innerHTML += text[i] === '\n' ? '<br>' : text[i];
-    i++;
-    setTimeout(typeText, 38);
-  }
-}
-
-// Gift click
-document.getElementById("giftBox").addEventListener("click", () => {
-  const gift = document.getElementById("gift");
-  const noteEl = document.getElementById("note");
-
-  if (!gift.classList.contains("open")) {
-    gift.classList.add("open");
-    noteEl.classList.add("show");
-    typeText();
-    launchConfetti(80);
-    createExtraConfetti();
-  }
-});
-
-// Confetti
-function launchConfetti(count) {
-  const colors = ['#ff4da6', '#ff69b4', '#ffb3d1', '#ffffff', '#ff1493', '#ff8cc6'];
-  for (let i = 0; i < count; i++) {
-    const c = document.createElement("div");
-    c.classList.add("confetti");
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.width = Math.random() * 12 + 8 + "px";
-    c.style.height = c.style.width;
-    c.style.animationDuration = (Math.random() * 3 + 3.5) + "s";
-    c.style.opacity = Math.random() * 0.8 + 0.6;
-    document.body.appendChild(c);
+<body class="bg-gradient-to-br from-purple-600 via-pink-500 to-rose-400 min-h-screen text-white overflow-x-hidden">
     
-    setTimeout(() => c.remove(), 7000);
-  }
-}
+    <!-- Background decorations -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="absolute top-10 left-10 text-6xl balloon">🎈</div>
+        <div class="absolute top-32 right-16 text-5xl balloon" style="animation-delay: 1.5s;">🎉</div>
+        <div class="absolute bottom-20 left-20 text-6xl balloon" style="animation-delay: 3s;">🎂</div>
+        <div class="absolute bottom-32 right-24 text-5xl balloon" style="animation-delay: 2s;">✨</div>
+    </div>
 
-function createExtraConfetti() {
-  setTimeout(() => launchConfetti(40), 600);
-  setTimeout(() => launchConfetti(30), 1200);
-}
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-md px-8 py-3 rounded-3xl mb-6 border border-white/30">
+                <span class="text-3xl">🎂</span>
+                <span class="text-xl font-semibold tracking-widest">BIRTHDAY MAGIC</span>
+            </div>
+            <h1 class="title-font text-7xl md:text-8xl font-bold tracking-tighter mb-2 drop-shadow-2xl">
+                HAPPY BIRTHDAY
+            </h1>
+            <p class="text-4xl md:text-5xl font-light text-yellow-200" id="friend-name">Alex 🎉</p>
+        </div>
 
-// Floating hearts
-function createFloatingHearts() {
-  const colors = ['💖', '💕', '🎀', '✨', '🌸'];
-  setInterval(() => {
-    if (Math.random() > 0.4) {
-      const heart = document.createElement("div");
-      heart.classList.add("floating-heart");
-      heart.textContent = colors[Math.floor(Math.random() * colors.length)];
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 6 + 7) + "s";
-      heart.style.fontSize = (Math.random() * 18 + 22) + "px";
-      document.body.appendChild(heart);
-      
-      setTimeout(() => heart.remove(), 15000);
-    }
-  }, 280);
-}
+        <!-- Cake -->
+        <div class="flex justify-center mb-16">
+            <div class="relative">
+                <!-- Cake -->
+                <div class="w-72 h-72 bg-gradient-to-b from-yellow-300 to-amber-400 rounded-3xl shadow-2xl relative overflow-hidden border-8 border-amber-700">
+                    <!-- Cake layers -->
+                    <div class="absolute bottom-0 w-full h-1/3 bg-gradient-to-b from-amber-500 to-orange-400"></div>
+                    <div class="absolute bottom-1/3 w-full h-1/3 bg-gradient-to-b from-yellow-300 to-amber-300"></div>
+                    
+                    <!-- Frosting -->
+                    <div class="absolute top-8 left-6 right-6 h-20 bg-white/80 rounded-t-3xl flex items-center justify-center">
+                        <div class="text-6xl">🍓</div>
+                    </div>
+                    
+                    <!-- Candles -->
+                    <div class="absolute top-12 left-1/2 flex gap-6 -translate-x-1/2">
+                        <div class="candle text-5xl">🕯️</div>
+                        <div class="candle text-6xl -mt-3" style="animation-delay: 0.5s;">🕯️</div>
+                        <div class="candle text-5xl" style="animation-delay: 1s;">🕯️</div>
+                    </div>
+                </div>
+                
+                <!-- Happy Birthday on cake -->
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white text-pink-500 font-bold text-xl px-10 py-2 rounded-2xl shadow-xl rotate-[-8deg]">
+                    HAPPY BIRTHDAY!
+                </div>
+            </div>
+        </div>
 
-// Keyboard support for fun
-document.addEventListener('keydown', (e) => {
-  if (e.key === "c" || e.key === "C") {
-    launchConfetti(60);
-  }
-});
+        <!-- Personal Note -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-10 mb-12 border border-white/20">
+            <h2 class="text-3xl font-semibold mb-6 flex items-center gap-3">
+                <span>💌</span> A Note From Your Friend
+            </h2>
+            <p class="text-xl leading-relaxed text-yellow-100 italic">
+                "Dear Alex,<br><br>
+                On your special day, I want you to know how grateful I am to have you in my life. 
+                Your laughter lights up every room, and your friendship makes every moment better. 
+                May this year bring you endless joy, crazy adventures, and all the success you deserve.<br><br>
+                Keep shining brighter than ever! 🎉<br><br>
+                With lots of love,<br>
+                Your Best Friend ❤️"
+            </p>
+        </div>
 
-// Auto launch some confetti after load
-setTimeout(() => {
-  if (main.classList.contains('show')) launchConfetti(25);
-}, 2500);
-</script>
+        <!-- Birth Date & Now -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+                <h3 class="text-xl mb-4 text-yellow-200">📅 You Were Born</h3>
+                <div class="text-5xl font-bold title-font">April 18, 1998</div>
+                <p class="text-2xl mt-2 text-white/70">A legend entered the world ✨</p>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+                <h3 class="text-xl mb-4 text-yellow-200">🎂 Today You Are</h3>
+                <div class="text-5xl font-bold title-font text-yellow-200">28 Years Young!</div>
+                <p class="text-2xl mt-2">And the best is yet to come 🚀</p>
+            </div>
+        </div>
 
+        <!-- Memories -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-semibold mb-8 text-center">📸 Beautiful Memories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="memory-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-6xl">🏖️</div>
+                    <div class="p-4">
+                        <p class="font-medium">Beach trip 2024</p>
+                        <p class="text-sm text-white/60">That sunset was unforgettable</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-rose-400 to-orange-400 flex items-center justify-center text-6xl">🎮</div>
+                    <div class="p-4">
+                        <p class="font-medium">Gaming nights</p>
+                        <p class="text-sm text-white/60">You still owe me a rematch 😏</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-6xl">🍕</div>
+                    <div class="p-4">
+                        <p class="font-medium">Midnight pizza runs</p>
+                        <p class="text-sm text-white/60">Best memories ever</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Section -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-10 border border-white/20">
+            <h2 class="text-3xl font-semibold mb-6 flex items-center gap-3">
+                <span>🎵</span> Your Favorite Vibes
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-black/30 rounded-2xl p-6 flex items-center gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-4xl">🎸</div>
+                    <div>
+                        <p class="font-semibold">Blinding Lights - The Weeknd</p>
+                        <p class="text-sm text-white/70">Your all-time favorite</p>
+                    </div>
+                </div>
+                
+                <div class="bg-black/30 rounded-2xl p-6 flex items-center gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center text-4xl">🎤</div>
+                    <div>
+                        <p class="font-semibold">Levitating - Dua Lipa</p>
+                        <p class="text-sm text-white/70">You sing this at the top of your lungs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="#" onclick="playBirthdaySong()" 
+                   class="inline-flex items-center gap-3 bg-white text-purple-600 font-bold px-10 py-5 rounded-2xl hover:scale-105 transition-all">
+                    <span>▶️</span>
+                    PLAY BIRTHDAY PLAYLIST
+                </a>
+            </div>
+        </div>
+
+        <!-- Final Wish -->
+        <div class="text-center mt-16">
+            <div class="inline-block bg-white text-pink-600 font-bold text-2xl px-12 py-6 rounded-3xl shadow-2xl rotate-[-3deg]">
+                Make this year legendary! 🌟
+            </div>
+            <p class="mt-8 text-xl text-white/80">Wishing you a day full of love, laughter, and cake! 🍰</p>
+            <p class="text-3xl mt-10">❤️ From someone who’s lucky to call you friend ❤️</p>
+        </div>
+    </div>
+
+    <!-- Confetti -->
+    <canvas id="confetti" class="fixed inset-0 pointer-events-none z-[-1]"></canvas>
+
+    <script>
+        // Tailwind script already loaded
+        
+        // Confetti
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let confettiPieces = [];
+
+        class Piece {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 12 + 8;
+                this.speed = Math.random() * 6 + 4;
+                this.angle = Math.random() * 360;
+                this.angleSpeed = Math.random() * 0.2 - 0.1;
+                this.color = ['#FF0080', '#00FF80', '#FFFF00', '#00FFFF', '#FF00FF'][Math.floor(Math.random()*5)];
+            }
+            
+            update() {
+                this.y += this.speed;
+                this.angle += this.angleSpeed;
+                if (this.y > canvas.height) this.y = -20;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function launchConfetti() {
+            confettiPieces = [];
+            for (let i = 0; i < 300; i++) {
+                confettiPieces.push(new Piece());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiPieces.forEach(piece => {
+                piece.update();
+                piece.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Birthday song alert (replace with real music if you want)
+        function playBirthdaySong() {
+            alert("🎵 Now playing your favorite playlist!\n\n(Imagine your top songs playing here - Blinding Lights, Levitating, etc.)");
+        }
+
+        // Initialize
+        launchConfetti();
+        animate();
+
+        // Make name editable for easy customization
+        document.getElementById('friend-name').addEventListener('click', () => {
+            const newName = prompt("Enter your friend's name:", "Alex");
+            if (newName) document.getElementById('friend-name').textContent = newName + " 🎉";
+        });
+    </script>
 </body>
 </html>
