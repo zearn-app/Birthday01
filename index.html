@@ -29,18 +29,26 @@ body {
   align-items: center;
   flex-direction: column;
   background: linear-gradient(45deg, #ff758c, #ff7eb3);
-  animation: fadeOut 3s ease 3s forwards;
+  animation: fadeOut 3.5s ease 4s forwards;
+  position: relative;
+  z-index: 100;
 }
 
 .intro h1 {
   font-family: 'Pacifico', cursive;
-  font-size: 3em;
+  font-size: 3.5em;
   animation: glow 2s infinite alternate;
 }
 
+.intro p {
+  margin-top: 15px;
+  font-size: 1.3em;
+  opacity: 0.9;
+}
+
 @keyframes glow {
-  from { text-shadow: 0 0 10px #fff; }
-  to { text-shadow: 0 0 30px #fff, 0 0 60px #ff4da6; }
+  from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6; }
+  to { text-shadow: 0 0 30px #fff, 0 0 60px #ff4da6, 0 0 80px #ff69b4; }
 }
 
 @keyframes fadeOut {
@@ -49,123 +57,208 @@ body {
 
 /* Main Section */
 .main {
-  padding: 40px;
+  padding: 40px 20px;
   text-align: center;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb);
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #ff9a9e);
+  background-size: 400% 400%;
   min-height: 100vh;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
+  font-size: 2.4em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  animation: bounceIn 1.5s ease;
 }
 
-/* Note */
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Note with Typing Effect */
 .note {
-  max-width: 600px;
-  margin: 20px auto;
-  background: rgba(255,255,255,0.2);
-  padding: 20px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  max-width: 620px;
+  margin: 30px auto;
+  background: rgba(255,255,255,0.25);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   animation: fadeIn 2s ease;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.note p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  min-height: 140px;
+}
+
+.typing {
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  white-space: pre-wrap;
+  animation: typing-cursor 0.7s step-end infinite;
+}
+
+@keyframes typing-cursor {
+  from, to { border-color: transparent; }
+  50% { border-color: #fff; }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px);}
-  to { opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hanging Photos */
+/* Gift Box */
+.gift-container {
+  margin: 40px auto;
+  width: 180px;
+  cursor: pointer;
+  position: relative;
+}
+
+.gift {
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+.gift:hover {
+  transform: scale(1.08);
+}
+
+.gift-lid {
+  position: relative;
+  z-index: 2;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gift.open .gift-lid {
+  transform: translateY(-60px) rotate(10deg);
+}
+
+.gift.open .gift-box {
+  transform: scale(1.05);
+}
+
+/* Photo Gallery */
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
+  gap: 35px;
+  margin-top: 50px;
 }
 
 .photo {
-  width: 150px;
-  height: 200px;
+  width: 160px;
+  height: 210px;
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
-  animation: swing 3s infinite ease-in-out;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+  animation: swing 4s infinite ease-in-out;
+  transition: all 0.4s ease;
+}
+
+.photo:hover {
+  transform: scale(1.12) rotate(2deg);
+  box-shadow: 0 20px 35px rgba(255, 105, 180, 0.4);
 }
 
 .photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.photo:hover img {
+  transform: scale(1.1);
 }
 
 .photo::before {
   content: "";
   position: absolute;
-  top: -30px;
+  top: -35px;
   left: 50%;
-  width: 2px;
-  height: 30px;
-  background: white;
+  width: 3px;
+  height: 35px;
+  background: linear-gradient(white, #ff69b4);
+  transform: translateX(-50%);
 }
 
-/* Swing animation */
+/* Different swing delays */
+.photo:nth-child(1) { animation-delay: 0s; }
+.photo:nth-child(2) { animation-delay: 0.8s; }
+.photo:nth-child(3) { animation-delay: 1.6s; }
+.photo:nth-child(4) { animation-delay: 0.4s; }
+
 @keyframes swing {
-  0% { transform: rotate(3deg); }
-  50% { transform: rotate(-3deg); }
-  100% { transform: rotate(3deg); }
+  0%, 100% { transform: rotate(4deg); }
+  50% { transform: rotate(-4deg); }
 }
 
-/* Lights */
-.lights {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.light {
-  width: 10px;
-  height: 20px;
-  background: yellow;
-  border-radius: 50%;
-  animation: blink 1s infinite alternate;
-}
-
-@keyframes blink {
-  from { opacity: 0.3; }
-  to { opacity: 1; }
-}
-
-/* 18 Celebration */
+/* Celebration */
 .celebration {
-  margin-top: 60px;
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #fff;
-  animation: pop 1s ease infinite alternate;
+  margin: 60px auto 30px;
+  font-size: 2.8em;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff4da6, #ffffff, #ff4da6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pop 1.2s ease infinite alternate;
+  text-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
 }
 
 @keyframes pop {
-  from { transform: scale(1); }
-  to { transform: scale(1.2); }
+  from { transform: scale(0.95); }
+  to { transform: scale(1.08); }
 }
 
 /* Floating hearts */
 .heart {
   position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 5s linear infinite;
+  bottom: -30px;
+  font-size: 28px;
+  animation: floatUp linear forwards;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 0 10px #ff69b4;
 }
 
 @keyframes floatUp {
   to {
-    transform: translateY(-100vh);
+    transform: translateY(-110vh) translateX(var(--drift));
     opacity: 0;
+  }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  animation: confetti-fall 4s linear forwards;
+  z-index: 5;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
   }
 }
 </style>
@@ -173,62 +266,157 @@ h2 {
 
 <body>
 
-<!-- Lights -->
-<div class="lights">
-  <div class="light"></div>
-  <div class="light"></div>
-  <div class="light"></div>
-  <div class="light"></div>
-  <div class="light"></div>
-</div>
-
 <!-- Intro -->
 <div class="intro">
-  <h1>Happy Birthday 🎉</h1>
-  <p>Something special is waiting...</p>
+  <h1>Happy Birthday 🎂</h1>
+  <p>Tap anywhere to begin...</p>
 </div>
 
 <!-- Main Content -->
 <div class="main">
-  <h2>🎂 Happy 18th Birthday 💖</h2>
 
+  <h2>💖 Happy 18th Birthday 💖</h2>
+
+  <!-- Gift Box -->
+  <div class="gift-container" id="giftBox">
+    <div class="gift" id="gift">
+      <svg width="180" height="160" viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Gift box -->
+        <rect x="30" y="80" width="120" height="70" rx="8" fill="#ff4da6"/>
+        <!-- Lid -->
+        <rect x="20" y="60" width="140" height="30" rx="6" fill="#ff69b4" class="gift-lid"/>
+        <!-- Ribbon -->
+        <rect x="75" y="40" width="30" height="110" fill="#fff"/>
+        <circle cx="90" cy="75" r="22" fill="#ff1493"/>
+        <text x="90" y="82" text-anchor="middle" fill="white" font-size="18" font-family="Pacifico">🎁</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Note -->
   <div class="note">
-    <p>
-      Today is not just your birthday...  
-      It's the beginning of a beautiful new journey.  
-      From all the memories we created together  
-      to the dreams waiting ahead — everything is special because of you. 💕  
-    </p>
+    <p id="message" class="typing"></p>
   </div>
 
   <!-- Photo Gallery -->
   <div class="gallery">
-    <div class="photo"><img src="https://picsum.photos/200/300?1"></div>
-    <div class="photo"><img src="https://picsum.photos/200/300?2"></div>
-    <div class="photo"><img src="https://picsum.photos/200/300?3"></div>
-    <div class="photo"><img src="https://picsum.photos/200/300?4"></div>
+    <div class="photo"><img src="https://picsum.photos/200/300?1" alt="Memory 1"></div>
+    <div class="photo"><img src="https://picsum.photos/200/300?2" alt="Memory 2"></div>
+    <div class="photo"><img src="https://picsum.photos/200/300?3" alt="Memory 3"></div>
+    <div class="photo"><img src="https://picsum.photos/200/300?4" alt="Memory 4"></div>
   </div>
 
   <!-- Celebration -->
   <div class="celebration">
     🎉 YOU ARE 18 NOW 🎉
   </div>
+
 </div>
 
 <script>
-// Floating hearts generator
+// Typing effect
+const messageText = `Today is not just your birthday...\n\nIt's the beginning of a beautiful new journey filled with endless possibilities. From all the memories we created together to the amazing dreams waiting ahead — everything is special because of you. 💕\n\nWishing you a year full of love, laughter, and unforgettable moments!`;
+
+const messageEl = document.getElementById('message');
+let i = 0;
+
+function typeMessage() {
+  if (i < messageText.length) {
+    messageEl.innerHTML += messageText.charAt(i) === '\n' ? '<br>' : messageText.charAt(i);
+    i++;
+    setTimeout(typeMessage, 35);
+  }
+}
+
+// Start typing after intro fades
+setTimeout(() => {
+  typeMessage();
+}, 4200);
+
+// Gift open animation
+const giftContainer = document.getElementById('giftBox');
+const gift = document.getElementById('gift');
+
+giftContainer.addEventListener('click', () => {
+  if (!gift.classList.contains('open')) {
+    gift.classList.add('open');
+    
+    // Launch confetti
+    launchConfetti(80);
+    
+    // Extra hearts burst
+    for (let k = 0; k < 15; k++) {
+      setTimeout(() => createHeartBurst(), k * 80);
+    }
+  }
+});
+
+function launchConfetti(count) {
+  const colors = ['#ff4da6', '#ffffff', '#ffd700', '#ff69b4', '#00ffcc'];
+  
+  for (let i = 0; i < count; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.width = Math.random() * 12 + 8 + 'px';
+    confetti.style.height = confetti.style.width;
+    confetti.style.opacity = Math.random() + 0.6;
+    confetti.style.animationDuration = Math.random() * 3 + 3.5 + 's';
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => confetti.remove(), 7000);
+  }
+}
+
+function createHeartBurst() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = Math.random() > 0.5 ? "💖" : "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 26 + 22 + "px";
+  heart.style.animationDuration = Math.random() * 3 + 3.5 + "s";
+  heart.style.setProperty('--drift', (Math.random() * 120 - 60) + "px");
+  document.body.appendChild(heart);
+  
+  setTimeout(() => heart.remove(), 6500);
+}
+
+// Floating hearts
 setInterval(() => {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.innerHTML = "💖";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  heart.style.fontSize = Math.random() * 22 + 18 + "px";
+  heart.style.animationDuration = Math.random() * 4 + 4.5 + "s";
+  heart.style.setProperty('--drift', (Math.random() * 80 - 40) + "px");
   document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 5000);
-}, 300);
+  setTimeout(() => heart.remove(), 9000);
+}, 280);
+
+// Click anywhere on intro to skip
+document.querySelector('.intro').addEventListener('click', () => {
+  const intro = document.querySelector('.intro');
+  intro.style.animation = 'fadeOut 0.6s ease forwards';
+});
+
+// Keyboard support for gift
+document.addEventListener('keydown', (e) => {
+  if (e.key === " " || e.key === "Enter") {
+    if (document.getElementById('gift').classList.contains('open') === false) {
+      gift.classList.add('open');
+      launchConfetti(60);
+    }
+  }
+});
+
+// Add some sparkle on load
+setTimeout(() => {
+  launchConfetti(40);
+}, 4800);
 </script>
 
 </body>
